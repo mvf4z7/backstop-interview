@@ -1,0 +1,169 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Card = require('../Card');
+
+var _Card2 = _interopRequireDefault(_Card);
+
+var _constants = require('../constants');
+
+var _randomInt = require('../randomInt');
+
+var _randomInt2 = _interopRequireDefault(_randomInt);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// Todo, pass in cards as a parameter, default to [],
+// If populated, then 
+
+var Deck = function () {
+  function Deck() {
+    var suits = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _constants.Suits;
+    var ranks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _constants.Ranks;
+
+    _classCallCheck(this, Deck);
+
+    this.suits = suits;
+    this.ranks = ranks;
+    this.names = Object.keys(ranks);
+    this._cards = this._buildCards();
+
+    this.shuffle();
+  }
+
+  _createClass(Deck, [{
+    key: 'shuffle',
+    value: function shuffle() {
+      var shuffled = [];
+      while (this._cards.length > 0) {
+        var idx = (0, _randomInt2.default)({ min: 0, max: this._cards.length - 1 });
+        var card = this._cards.splice(idx, 1)[0];
+        shuffled.push(card);
+      }
+      this._cards = shuffled;
+
+      return this.cards();
+    }
+
+    /*
+     * Will attempt to draw num cards from the top of the deck, where the top 
+     * is considered to be the card at index zero of the _cards array. If
+     * num is greater than the number of remaining cards, then all of the
+     * remaining cards are returned. 
+     * 
+     * If there are no cards remaining, then null is returned.
+    */
+
+  }, {
+    key: 'draw',
+    value: function draw(num) {
+      if (!this._cards.length) {
+        return null;
+      }
+
+      var numberToDraw = num <= this._cards.length ? num : this._cards.length;
+      var cards = this._cards.splice(0, numberToDraw);
+
+      return this._mapCards(cards);
+    }
+  }, {
+    key: 'cards',
+    value: function cards() {
+      return this._mapCards(this._cards);
+    }
+
+    /*
+     * If returns a positive number then the first parameter has
+     * higher rank.
+     * If returns a negative number then the second parameter has
+     * higher rank.
+     * If returns zero then the two cards have the same rank.
+     * If returns null, then there was an error parsing one of
+     * the card strings.
+    */
+
+  }, {
+    key: 'compare',
+    value: function compare(leftCardStr, rightCardStr) {
+      var leftCard = this._parseCard(leftCardStr);
+      var rightCard = this._parseCard(rightCardStr);
+
+      if (!leftCard || !rightCard) {
+        return null;
+      }
+
+      return leftCard.rank - rightCard.rank;
+    }
+  }, {
+    key: 'cut',
+    value: function cut() {}
+  }, {
+    key: '_buildCards',
+    value: function _buildCards() {
+      var _this = this;
+
+      var cards = [];
+      this.suits.forEach(function (suit) {
+        _this.names.forEach(function (name) {
+          cards.push(new _Card2.default(suit, name, _this.ranks[name]));
+        });
+      });
+
+      return cards;
+    }
+  }, {
+    key: '_parseCard',
+    value: function _parseCard(str) {
+      var regex = buildCardParsingRegex(this.suits, this.names);
+      var match = str.match(regex);
+
+      // Should be three, with first element being the full match,
+      // and the 2nd and 3rd elements being the name and suit, respectively.
+      if (match === null || match.length !== 3) {
+        return null;
+      }
+
+      var name = match[1];
+      var suit = match[2];
+      var rank = this.ranks[name];
+
+      if (!rank) {
+        return null;
+      }
+
+      return new _Card2.default(suit, name, rank);
+    }
+  }, {
+    key: 'copy',
+    value: function copy() {
+      // works!
+      return new Deck(this.suits, this.ranks);
+    }
+  }, {
+    key: '_mapCards',
+    value: function _mapCards(cards) {
+      return cards.map(function (card) {
+        return card.toString();
+      });
+    }
+  }]);
+
+  return Deck;
+}();
+
+exports.default = Deck;
+
+
+function buildCardParsingRegex(suits, names) {
+  var firstGroup = '(' + names.join('|') + ')';
+  var secondGroup = '(' + suits.join('|') + ')';
+
+  return new RegExp(firstGroup + ' of ' + secondGroup);
+}
