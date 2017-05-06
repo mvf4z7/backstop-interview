@@ -36,7 +36,7 @@ export default class Deck {
 
   shuffle() {
     const shuffled = [];
-    const cards = this._buildCards();
+    const cards = this._buildCards(this.suits, this.ranks);
     while(cards.length > 0) {
       const idx = randomInt({ min: 0, max: cards.length - 1 });
       const card = cards.splice(idx, 1)[0];
@@ -91,7 +91,7 @@ export default class Deck {
   }
 
   cut() {
-     const { suits, ranks } = this;
+    const { suits, ranks } = this;
 
     if(this._cards.length <= 1) {
       return null;
@@ -109,11 +109,12 @@ export default class Deck {
     ];
   }
 
-  _buildCards() {
+  _buildCards(suits, ranks) {
+    const names = Object.keys(ranks);
     const cards = [];
-    this.suits.forEach( suit => {
-      this.names.forEach( name => {
-        cards.push(new Card(suit, name, this.ranks[name]));
+    suits.forEach( suit => {
+      names.forEach( name => {
+        cards.push(new Card(suit, name, ranks[name]));
       });
     });
 
@@ -121,6 +122,7 @@ export default class Deck {
   }
 
   _parseCard(str) {
+    if(!str) return null;
     const regex = buildCardParsingRegex(this.suits, this.names);
     const match = str.match(regex);
 
@@ -146,7 +148,7 @@ export default class Deck {
   }
 }
 
-function buildCardParsingRegex(suits, names) {
+export function buildCardParsingRegex(suits, names) {
   const firstGroup = `(${names.join('|')})`;
   const secondGroup = `(${suits.join('|')})`;
 

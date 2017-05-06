@@ -13,6 +13,15 @@ export const nonNumberThings = [
   () => {},
 ];
 
+export const falsyThings = [
+  false,
+  0,
+  '',
+  null,
+  undefined,
+  NaN,
+];
+
 export const standardDeck = [
   '2 of Clubs',
   '3 of Clubs',
@@ -65,5 +74,5 @@ export const standardDeck = [
   'Jack of Spades',
   'Queen of Spades',
   'King of Spades',
-  'Ace of Spades',
+  'Ace of Spades'
 ];

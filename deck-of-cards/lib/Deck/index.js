@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+exports.buildCardParsingRegex = buildCardParsingRegex;
+
 var _Card = require('../Card');
 
 var _Card2 = _interopRequireDefault(_Card);
@@ -62,7 +64,7 @@ var Deck = function () {
     key: 'shuffle',
     value: function shuffle() {
       var shuffled = [];
-      var cards = this._buildCards();
+      var cards = this._buildCards(this.suits, this.ranks);
       while (cards.length > 0) {
         var idx = (0, _randomInt2.default)({ min: 0, max: cards.length - 1 });
         var card = cards.splice(idx, 1)[0];
@@ -143,13 +145,12 @@ var Deck = function () {
     }
   }, {
     key: '_buildCards',
-    value: function _buildCards() {
-      var _this = this;
-
+    value: function _buildCards(suits, ranks) {
+      var names = Object.keys(ranks);
       var cards = [];
-      this.suits.forEach(function (suit) {
-        _this.names.forEach(function (name) {
-          cards.push(new _Card2.default(suit, name, _this.ranks[name]));
+      suits.forEach(function (suit) {
+        names.forEach(function (name) {
+          cards.push(new _Card2.default(suit, name, ranks[name]));
         });
       });
 
@@ -158,6 +159,7 @@ var Deck = function () {
   }, {
     key: '_parseCard',
     value: function _parseCard(str) {
+      if (!str) return null;
       var regex = buildCardParsingRegex(this.suits, this.names);
       var match = str.match(regex);
 
@@ -190,8 +192,6 @@ var Deck = function () {
 }();
 
 exports.default = Deck;
-
-
 function buildCardParsingRegex(suits, names) {
   var firstGroup = '(' + names.join('|') + ')';
   var secondGroup = '(' + suits.join('|') + ')';

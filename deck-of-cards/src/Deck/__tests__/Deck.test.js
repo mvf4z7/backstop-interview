@@ -2,11 +2,18 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 
 import Deck from '../';
-import { Suits, Ranks } from '../../constants';
-import { standardDeck } from '../../testFixtures';
+import Card from '../../Card';
+import { Suits, Ranks, Names } from '../../constants';
+import { standardDeck, falsyThings } from '../../testFixtures';
 
 const validSeedDeck = [ standardDeck[0], standardDeck[24], standardDeck[38] ];
 const invalidSeedDeck = [ standardDeck[18], 'Foo Bar', standardDeck[21], standardDeck[47] ];
+const invalidCardStrings = [
+  'foo',
+  '2 of spades',
+  'two of spades',
+  'two of Spades',
+];
 
 describe('Deck' , function() {
   describe('constructor', function() {
@@ -106,23 +113,113 @@ describe('Deck' , function() {
       let drawn = deck.draw(1);
       expect(deck.cards()).to.have.length(0);
       drawn = deck.draw(1);
-      expect(drawn).to.equal(null);
+      expect(drawn).to.be.null
+    });
+  });
+
+  describe('_parseCard', function() {
+    it('should return null if argument is falsy', function() {
+      const deck = new Deck();
+      falsyThings.forEach( thing => {
+        expect(deck._parseCard(thing)).to.be.null;  
+      });
+    });
+
+    it('should return null if the passed string is not a valid card string', function() {
+      const invalidCardStrings = [
+        'foo',
+        '2 of spades',
+        'two of spades',
+        'two of Spades',
+      ];
+      const deck = new Deck();
+      invalidCardStrings.forEach( str => {
+        expect(deck._parseCard(str)).to.be.null;
+      });
+    });
+
+    it('should return a properly initialized Card instance if a valid card str is passed in', function() {
+      const deck = new Deck();
+      standardDeck.forEach( cardStr => {
+        const card = deck._parseCard(cardStr);
+        expect(card).to.be.instanceOf(Card);
+        expect(card.suit).to.be.oneOf(Suits);
+        expect(card.name).to.be.oneOf(Object.values(Names));
+        expect(card.rank).to.equal(Ranks[card.name]);
+      });
     });
   });
 
   describe('compare', function() {
-    
+    it('should return null if non parseable card strings are provided', function() {
+      const deck = new Deck();
+      expect(deck.compare()).to.be.null;
+      expect(deck.compare(invalidCardStrings[0])).to.be.null;
+      expect(deck.compare(invalidCardStrings[0], invalidCardStrings[1])).to.be.null;
+      expect(deck.compare(standardDeck[0])).to.be.null;
+      expect(deck.compare(invalidCardStrings[0], standardDeck[1])).to.be.null;
+      expect(deck.compare(standardDeck[0], invalidCardStrings[0])).to.be.null;
+    });
+
+    it('should should return the difference of the ranks of the two cards', function() {
+      const rankFour = new Card(Suits[0], Names.four, Ranks[Names.four]);
+      const rankEight = new Card(Suits[0], Names.eight, Ranks[Names.eight]);
+      const deck = new Deck();
+      expect(deck.compare(rankFour.toString(), rankEight.toString())).to.equal(4 - 8);
+      expect(deck.compare(rankEight.toString(), rankFour.toString())).to.equal(8 - 4);
+      expect(deck.compare(rankFour.toString(), rankFour.toString())).to.equal(0);
+    });
   });
 
   describe('cut', function() {
+    it('should return null if the deck only has one card remaining', function() {
+      const cards = standardDeck.slice(0, 1);
+      const deck = new Deck({ cards });
+      expect(deck.cut()).to.be.null;
+    });
 
+    it('should return an array of two new Deck instances if the deck can be cut', function() {
+      const deck = new Deck();
+      const cuts = deck.cut();
+      expect(cuts).to.have.length(2);
+      expect(cuts[0]).to.be.instanceOf(Deck);
+      expect(cuts[1]).to.be.instanceOf(Deck);
+    });
+
+    it('should split the original deck\'s cards between the two new decks', function() {
+      const deck = new Deck();
+      const originalCards = deck.cards();
+      const cuts = deck.cut();
+      const cutOneCards = cuts[0].cards();
+      const cutTwoCards = cuts[1].cards();
+
+      expect(cutOneCards.length + cutTwoCards.length).to.equal(originalCards.length);
+      expect(originalCards).to.include.members(cutOneCards);
+      expect(originalCards).to.include.members(cutTwoCards);
+      cutOneCards.forEach( card => {
+        expect(card).to.not.be.oneOf(cutTwoCards);
+      });
+      cutTwoCards.forEach( card => {
+        expect(card).to.not.be.oneOf(cutOneCards);
+      });
+    });
+
+    it('should render the cut deck empty', function() {
+      const deck = new Deck();
+      deck.cut();
+      expect(deck.cards()).to.have.length(0);
+    });
   });
 
   describe('_buildCards', function() {
-
-  });
-
-  describe('_parseCard', function() {
-
+    it('should use the provided Suits and Ranks config to build a deck', function() {
+      const cards = Deck.prototype._buildCards(Suits, Ranks);
+      expect(cards).to.have.length(standardDeck.length);
+      
+      const stringifiedCards = cards.map( card => card.toString() );
+      standardDeck.forEach( cardStr => {
+        expect(cardStr).to.be.oneOf(stringifiedCards);
+      });
+    });
   });
 });
