@@ -4,10 +4,11 @@
   "description": "A class representing a deck of playing cards",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && mocha ./lib/**/__tests__/*.test.js",
+    "test": "npm run lint && istanbul cover node_modules/mocha/bin/_mocha ./lib/**/__tests__/*.test.js && npm run check-coverage",
+    "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --lines 100 --functions 100",
+    "lint": "eslint ./src/*.js",
     "build": "babel src --out-dir lib",
-    "build-watch": "babel src --watch --out-dir lib",
-    "lint": "eslint ./src/*.js"
+    "build-watch": "babel src --watch --out-dir lib"
   },
   "author": "Mike Fanger",
   "license": "ISC",
@@ -20,6 +21,8 @@
     "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
-    "mocha": "^3.3.0"
+    "istanbul": "^0.4.5",
+    "mocha": "^3.3.0",
+    "sinon": "^2.2.0"
   }
 }

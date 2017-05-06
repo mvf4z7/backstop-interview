@@ -51,7 +51,7 @@ var Deck = function () {
       if (!this._validateCards(cards)) {
         throw new Error('Invalid card array provided to constructor.');
       }
-      this._cards = cards;
+      this._cards = cards.map(this._parseCard);
     } else {
       this.shuffle();
     }
