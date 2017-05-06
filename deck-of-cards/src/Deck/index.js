@@ -2,29 +2,48 @@ import Card from '../Card';
 import { Suits, Ranks } from '../constants';
 import randomInt from '../randomInt';
 
-// Todo, pass in cards as a parameter, default to [],
-// If populated, then 
+//  Draw, returns only a few cards
+// shuffle should be in place
+// compare two cards [ foo of bar , dog of baz ]
+// cut, return two "decks", instances of Deck
+
+const Defaults = {
+  suits: Suits,
+  ranks: Ranks,
+  cards: []
+};
 
 export default class Deck {
-  constructor(suits = Suits, ranks = Ranks) {
+  constructor({
+    suits = Defaults.suits,
+    ranks = Defaults.ranks,
+    cards = Defaults.cards 
+  } = Defaults) {
     this.suits = suits;
     this.ranks = ranks;
     this.names = Object.keys(ranks);
-    this._cards = this._buildCards();
 
-    this.shuffle();
+    if(cards.length) {
+      if(!this._validateCards(cards)) {
+        throw new Error('Invalid card array provided to constructor.');
+      }
+      this._cards = cards;
+    } else {
+      this.shuffle();
+    }
   }
 
   shuffle() {
     const shuffled = [];
-    while(this._cards.length > 0) {
-      const idx = randomInt({ min: 0, max: this._cards.length - 1 });
-      const card = this._cards.splice(idx, 1)[0];
+    const cards = this._buildCards();
+    while(cards.length > 0) {
+      const idx = randomInt({ min: 0, max: cards.length - 1 });
+      const card = cards.splice(idx, 1)[0];
       shuffled.push(card);
     }
     this._cards = shuffled;
 
-    return this.cards();
+    return this;
   }
 
   /*
@@ -71,7 +90,22 @@ export default class Deck {
   }
 
   cut() {
+     const { suits, ranks } = this;
 
+    if(this._cards.length <= 1) {
+      return null;
+    }
+
+    const int = randomInt({ min: 0, max: this._cards.length - 1 });
+    const top = this._cards.splice(0, int);
+    const bottom = this._cards;
+
+    this._cards = [];
+
+    return [
+      new Deck({ suits, ranks, cards: this._mapCards(top) }),
+      new Deck({ suits, ranks, cards: this._mapCards(bottom) })
+    ];
   }
 
   _buildCards() {
@@ -106,13 +140,12 @@ export default class Deck {
     return new Card(suit, name, rank);
   }
 
-  copy() {
-    // works!
-    return new Deck(this.suits, this.ranks);
-  }
-
   _mapCards(cards) {
     return cards.map( card => card.toString() );
+  }
+
+  _validateCards(cards) {
+    return cards.every( cardStr => this._parseCard(cardStr) !== null );
   }
 }
 

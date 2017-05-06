@@ -20,36 +20,56 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// Todo, pass in cards as a parameter, default to [],
-// If populated, then 
+//  Draw, returns only a few cards
+// shuffle should be in place
+// compare two cards [ foo of bar , dog of baz ]
+// cut, return two "decks", instances of Deck
+
+var Defaults = {
+  suits: _constants.Suits,
+  ranks: _constants.Ranks,
+  cards: []
+};
 
 var Deck = function () {
   function Deck() {
-    var suits = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _constants.Suits;
-    var ranks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _constants.Ranks;
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Defaults,
+        _ref$suits = _ref.suits,
+        suits = _ref$suits === undefined ? Defaults.suits : _ref$suits,
+        _ref$ranks = _ref.ranks,
+        ranks = _ref$ranks === undefined ? Defaults.ranks : _ref$ranks,
+        _ref$cards = _ref.cards,
+        cards = _ref$cards === undefined ? Defaults.cards : _ref$cards;
 
     _classCallCheck(this, Deck);
 
     this.suits = suits;
     this.ranks = ranks;
     this.names = Object.keys(ranks);
-    this._cards = this._buildCards();
 
-    this.shuffle();
+    if (cards.length) {
+      if (!this._validateCards(cards)) {
+        throw new Error('Invalid card array provided to constructor.');
+      }
+      this._cards = cards;
+    } else {
+      this.shuffle();
+    }
   }
 
   _createClass(Deck, [{
     key: 'shuffle',
     value: function shuffle() {
       var shuffled = [];
-      while (this._cards.length > 0) {
-        var idx = (0, _randomInt2.default)({ min: 0, max: this._cards.length - 1 });
-        var card = this._cards.splice(idx, 1)[0];
+      var cards = this._buildCards();
+      while (cards.length > 0) {
+        var idx = (0, _randomInt2.default)({ min: 0, max: cards.length - 1 });
+        var card = cards.splice(idx, 1)[0];
         shuffled.push(card);
       }
       this._cards = shuffled;
 
-      return this.cards();
+      return this;
     }
 
     /*
@@ -103,7 +123,23 @@ var Deck = function () {
     }
   }, {
     key: 'cut',
-    value: function cut() {}
+    value: function cut() {
+      var suits = this.suits,
+          ranks = this.ranks;
+
+
+      if (this._cards.length <= 1) {
+        return null;
+      }
+
+      var int = (0, _randomInt2.default)({ min: 0, max: this._cards.length - 1 });
+      var top = this._cards.splice(0, int);
+      var bottom = this._cards;
+
+      this._cards = [];
+
+      return [new Deck({ suits: suits, ranks: ranks, cards: this._mapCards(top) }), new Deck({ suits: suits, ranks: ranks, cards: this._mapCards(bottom) })];
+    }
   }, {
     key: '_buildCards',
     value: function _buildCards() {
@@ -141,16 +177,19 @@ var Deck = function () {
       return new _Card2.default(suit, name, rank);
     }
   }, {
-    key: 'copy',
-    value: function copy() {
-      // works!
-      return new Deck(this.suits, this.ranks);
-    }
-  }, {
     key: '_mapCards',
     value: function _mapCards(cards) {
       return cards.map(function (card) {
         return card.toString();
+      });
+    }
+  }, {
+    key: '_validateCards',
+    value: function _validateCards(cards) {
+      var _this2 = this;
+
+      return cards.every(function (cardStr) {
+        return _this2._parseCard(cardStr) !== null;
       });
     }
   }]);
