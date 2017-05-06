@@ -27,7 +27,7 @@ export default class Deck {
       if(!this._validateCards(cards)) {
         throw new Error('Invalid card array provided to constructor.');
       }
-      this._cards = cards.map(this._parseCard);
+      this._cards = cards.map( this._parseCard.bind(this) );
     } else {
       this.shuffle();
     }
