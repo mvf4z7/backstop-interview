@@ -66,7 +66,7 @@ export default class Deck {
     return this._mapCards(drawnCards);
   }
 
-  cards() {
+  get cards() {
     return this._mapCards(this._cards);
   }
 

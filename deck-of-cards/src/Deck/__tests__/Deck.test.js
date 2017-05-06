@@ -53,12 +53,12 @@ describe('Deck' , function() {
   describe('cards', function() {
     it('should return the string representation of all the cards currently in the deck', function() {
       deck = new Deck();
-      expect(deck.cards()).to.have.length(standardDeck.length);
-      expect(deck.cards()).to.include.members(standardDeck);
+      expect(deck.cards).to.have.length(standardDeck.length);
+      expect(deck.cards).to.include.members(standardDeck);
 
       let deck = new Deck({ cards: validSeedDeck });
-      expect(deck.cards()).to.have.length(3);
-      expect(deck.cards()).to.include.members(validSeedDeck);
+      expect(deck.cards).to.have.length(3);
+      expect(deck.cards).to.include.members(validSeedDeck);
     });
   });
 
@@ -70,17 +70,17 @@ describe('Deck' , function() {
 
     it('should rebuild a full deck, regardless of the current state of the deck', function() {
       const deck = new Deck({ cards: validSeedDeck });
-      expect(deck.cards()).to.have.length(validSeedDeck.length);
+      expect(deck.cards).to.have.length(validSeedDeck.length);
 
       deck.shuffle();
-      expect(deck.cards()).to.have.length(standardDeck.length);
-      expect(deck.cards()).to.include.members(standardDeck);
+      expect(deck.cards).to.have.length(standardDeck.length);
+      expect(deck.cards).to.include.members(standardDeck);
     });
 
     it('should reorder the cards in the deck', function() {
       const deck = new Deck();
-      const initialOrder = deck.cards();
-      const newOrder = deck.shuffle().cards();
+      const initialOrder = deck.cards;
+      const newOrder = deck.shuffle().cards;
 
       expect(newOrder).to.include.members(initialOrder);
       expect(newOrder).to.not.deep.equal(initialOrder);
@@ -95,8 +95,8 @@ describe('Deck' , function() {
 
       expect(drawn).to.have.length(numberToDraw);
       expect(standardDeck).to.include.members(drawn);
-      expect(deck.cards()).to.have.length(standardDeck.length - numberToDraw);
-      expect(deck.cards()).to.not.include.members(drawn);
+      expect(deck.cards).to.have.length(standardDeck.length - numberToDraw);
+      expect(deck.cards).to.not.include.members(drawn);
     });
 
     it('should return all of the remaining cards if more cards were requested than what are available in the deck', function() {
@@ -105,13 +105,13 @@ describe('Deck' , function() {
       const drawn = deck.draw(numberToDraw);
 
       expect(drawn).to.have.length(validSeedDeck.length);
-      expect(deck.cards()).to.have.length(0);
+      expect(deck.cards).to.have.length(0);
     });
 
     it('should return null if called on an empty deck', function() {
       const deck = new Deck({ cards: [ standardDeck[0] ] });
       let drawn = deck.draw(1);
-      expect(deck.cards()).to.have.length(0);
+      expect(deck.cards).to.have.length(0);
       drawn = deck.draw(1);
       expect(drawn).to.be.null
     });
@@ -188,26 +188,24 @@ describe('Deck' , function() {
 
     it('should split the original deck\'s cards between the two new decks', function() {
       const deck = new Deck();
-      const originalCards = deck.cards();
+      const originalCards = deck.cards;
       const cuts = deck.cut();
-      const cutOneCards = cuts[0].cards();
-      const cutTwoCards = cuts[1].cards();
 
-      expect(cutOneCards.length + cutTwoCards.length).to.equal(originalCards.length);
-      expect(originalCards).to.include.members(cutOneCards);
-      expect(originalCards).to.include.members(cutTwoCards);
-      cutOneCards.forEach( card => {
-        expect(card).to.not.be.oneOf(cutTwoCards);
+      expect(cuts[0].cards.length + cuts[1].cards.length).to.equal(originalCards.length);
+      expect(originalCards).to.include.members(cuts[0].cards);
+      expect(originalCards).to.include.members(cuts[1].cards);
+      cuts[0].cards.forEach( card => {
+        expect(card).to.not.be.oneOf(cuts[1].cards);
       });
-      cutTwoCards.forEach( card => {
-        expect(card).to.not.be.oneOf(cutOneCards);
+      cuts[1].cards.forEach( card => {
+        expect(card).to.not.be.oneOf(cuts[0].cards);
       });
     });
 
     it('should render the cut deck empty', function() {
       const deck = new Deck();
       deck.cut();
-      expect(deck.cards()).to.have.length(0);
+      expect(deck.cards).to.have.length(0);
     });
   });
 

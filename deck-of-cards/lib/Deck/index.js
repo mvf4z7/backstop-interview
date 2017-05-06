@@ -97,10 +97,8 @@ var Deck = function () {
       return this._mapCards(drawnCards);
     }
   }, {
-    key: 'cards',
-    value: function cards() {
-      return this._mapCards(this._cards);
-    }
+    key: 'compare',
+
 
     /*
      * If returns a positive number then the first parameter has
@@ -111,9 +109,6 @@ var Deck = function () {
      * If returns null, then there was an error parsing one of
      * the card strings.
     */
-
-  }, {
-    key: 'compare',
     value: function compare(leftCardStr, rightCardStr) {
       var leftCard = this._parseCard(leftCardStr);
       var rightCard = this._parseCard(rightCardStr);
@@ -185,6 +180,11 @@ var Deck = function () {
       return cards.map(function (card) {
         return card.toString();
       });
+    }
+  }, {
+    key: 'cards',
+    get: function get() {
+      return this._mapCards(this._cards);
     }
   }]);
 

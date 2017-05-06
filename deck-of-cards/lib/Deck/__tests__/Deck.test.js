@@ -62,12 +62,12 @@ describe('Deck', function () {
   describe('cards', function () {
     it('should return the string representation of all the cards currently in the deck', function () {
       deck = new _2.default();
-      (0, _chai.expect)(deck.cards()).to.have.length(_testFixtures.standardDeck.length);
-      (0, _chai.expect)(deck.cards()).to.include.members(_testFixtures.standardDeck);
+      (0, _chai.expect)(deck.cards).to.have.length(_testFixtures.standardDeck.length);
+      (0, _chai.expect)(deck.cards).to.include.members(_testFixtures.standardDeck);
 
       var deck = new _2.default({ cards: validSeedDeck });
-      (0, _chai.expect)(deck.cards()).to.have.length(3);
-      (0, _chai.expect)(deck.cards()).to.include.members(validSeedDeck);
+      (0, _chai.expect)(deck.cards).to.have.length(3);
+      (0, _chai.expect)(deck.cards).to.include.members(validSeedDeck);
     });
   });
 
@@ -79,17 +79,17 @@ describe('Deck', function () {
 
     it('should rebuild a full deck, regardless of the current state of the deck', function () {
       var deck = new _2.default({ cards: validSeedDeck });
-      (0, _chai.expect)(deck.cards()).to.have.length(validSeedDeck.length);
+      (0, _chai.expect)(deck.cards).to.have.length(validSeedDeck.length);
 
       deck.shuffle();
-      (0, _chai.expect)(deck.cards()).to.have.length(_testFixtures.standardDeck.length);
-      (0, _chai.expect)(deck.cards()).to.include.members(_testFixtures.standardDeck);
+      (0, _chai.expect)(deck.cards).to.have.length(_testFixtures.standardDeck.length);
+      (0, _chai.expect)(deck.cards).to.include.members(_testFixtures.standardDeck);
     });
 
     it('should reorder the cards in the deck', function () {
       var deck = new _2.default();
-      var initialOrder = deck.cards();
-      var newOrder = deck.shuffle().cards();
+      var initialOrder = deck.cards;
+      var newOrder = deck.shuffle().cards;
 
       (0, _chai.expect)(newOrder).to.include.members(initialOrder);
       (0, _chai.expect)(newOrder).to.not.deep.equal(initialOrder);
@@ -104,8 +104,8 @@ describe('Deck', function () {
 
       (0, _chai.expect)(drawn).to.have.length(numberToDraw);
       (0, _chai.expect)(_testFixtures.standardDeck).to.include.members(drawn);
-      (0, _chai.expect)(deck.cards()).to.have.length(_testFixtures.standardDeck.length - numberToDraw);
-      (0, _chai.expect)(deck.cards()).to.not.include.members(drawn);
+      (0, _chai.expect)(deck.cards).to.have.length(_testFixtures.standardDeck.length - numberToDraw);
+      (0, _chai.expect)(deck.cards).to.not.include.members(drawn);
     });
 
     it('should return all of the remaining cards if more cards were requested than what are available in the deck', function () {
@@ -114,13 +114,13 @@ describe('Deck', function () {
       var drawn = deck.draw(numberToDraw);
 
       (0, _chai.expect)(drawn).to.have.length(validSeedDeck.length);
-      (0, _chai.expect)(deck.cards()).to.have.length(0);
+      (0, _chai.expect)(deck.cards).to.have.length(0);
     });
 
     it('should return null if called on an empty deck', function () {
       var deck = new _2.default({ cards: [_testFixtures.standardDeck[0]] });
       var drawn = deck.draw(1);
-      (0, _chai.expect)(deck.cards()).to.have.length(0);
+      (0, _chai.expect)(deck.cards).to.have.length(0);
       drawn = deck.draw(1);
       (0, _chai.expect)(drawn).to.be.null;
     });
@@ -192,26 +192,24 @@ describe('Deck', function () {
 
     it('should split the original deck\'s cards between the two new decks', function () {
       var deck = new _2.default();
-      var originalCards = deck.cards();
+      var originalCards = deck.cards;
       var cuts = deck.cut();
-      var cutOneCards = cuts[0].cards();
-      var cutTwoCards = cuts[1].cards();
 
-      (0, _chai.expect)(cutOneCards.length + cutTwoCards.length).to.equal(originalCards.length);
-      (0, _chai.expect)(originalCards).to.include.members(cutOneCards);
-      (0, _chai.expect)(originalCards).to.include.members(cutTwoCards);
-      cutOneCards.forEach(function (card) {
-        (0, _chai.expect)(card).to.not.be.oneOf(cutTwoCards);
+      (0, _chai.expect)(cuts[0].cards.length + cuts[1].cards.length).to.equal(originalCards.length);
+      (0, _chai.expect)(originalCards).to.include.members(cuts[0].cards);
+      (0, _chai.expect)(originalCards).to.include.members(cuts[1].cards);
+      cuts[0].cards.forEach(function (card) {
+        (0, _chai.expect)(card).to.not.be.oneOf(cuts[1].cards);
       });
-      cutTwoCards.forEach(function (card) {
-        (0, _chai.expect)(card).to.not.be.oneOf(cutOneCards);
+      cuts[1].cards.forEach(function (card) {
+        (0, _chai.expect)(card).to.not.be.oneOf(cuts[0].cards);
       });
     });
 
     it('should render the cut deck empty', function () {
       var deck = new _2.default();
       deck.cut();
-      (0, _chai.expect)(deck.cards()).to.have.length(0);
+      (0, _chai.expect)(deck.cards).to.have.length(0);
     });
   });
 
