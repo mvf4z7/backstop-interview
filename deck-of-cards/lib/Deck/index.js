@@ -48,10 +48,11 @@ var Deck = function () {
     this.names = Object.keys(ranks);
 
     if (cards.length) {
-      if (!this._validateCards(cards)) {
-        throw new Error('Invalid card array provided to constructor.');
+      var parsedCards = cards.map(this._parseCard.bind(this));
+      if (parsedCards.indexOf(null) !== -1) {
+        throw new Error('Invalid cards argument. Unable to parse all cards');
       }
-      this._cards = cards.map(this._parseCard.bind(this));
+      this._cards = parsedCards;
     } else {
       this.shuffle();
     }
@@ -89,9 +90,9 @@ var Deck = function () {
       }
 
       var numberToDraw = num <= this._cards.length ? num : this._cards.length;
-      var cards = this._cards.splice(0, numberToDraw);
+      var drawnCards = this._cards.splice(0, numberToDraw);
 
-      return this._mapCards(cards);
+      return this._mapCards(drawnCards);
     }
   }, {
     key: 'cards',
@@ -181,15 +182,6 @@ var Deck = function () {
     value: function _mapCards(cards) {
       return cards.map(function (card) {
         return card.toString();
-      });
-    }
-  }, {
-    key: '_validateCards',
-    value: function _validateCards(cards) {
-      var _this2 = this;
-
-      return cards.every(function (cardStr) {
-        return _this2._parseCard(cardStr) !== null;
       });
     }
   }]);

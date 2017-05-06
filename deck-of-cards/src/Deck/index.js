@@ -24,10 +24,11 @@ export default class Deck {
     this.names = Object.keys(ranks);
 
     if(cards.length) {
-      if(!this._validateCards(cards)) {
-        throw new Error('Invalid card array provided to constructor.');
+      const parsedCards = cards.map( this._parseCard.bind(this) );
+      if(parsedCards.indexOf(null) !== -1) {
+        throw new Error('Invalid cards argument. Unable to parse all cards');
       }
-      this._cards = cards.map( this._parseCard.bind(this) );
+      this._cards = parsedCards;
     } else {
       this.shuffle();
     }
@@ -60,9 +61,9 @@ export default class Deck {
     }
 
     let numberToDraw = num <= this._cards.length ? num : this._cards.length;
-    const cards = this._cards.splice(0, numberToDraw);
+    const drawnCards = this._cards.splice(0, numberToDraw);
 
-    return this._mapCards(cards);
+    return this._mapCards(drawnCards);
   }
 
   cards() {
@@ -142,10 +143,6 @@ export default class Deck {
 
   _mapCards(cards) {
     return cards.map( card => card.toString() );
-  }
-
-  _validateCards(cards) {
-    return cards.every( cardStr => this._parseCard(cardStr) !== null );
   }
 }
 
