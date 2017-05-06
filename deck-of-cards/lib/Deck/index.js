@@ -12,7 +12,7 @@ var _Card2 = _interopRequireDefault(_Card);
 
 var _constants = require('../constants');
 
-var _randomInt = require('../randomInt');
+var _randomInt = require('../utils/randomInt');
 
 var _randomInt2 = _interopRequireDefault(_randomInt);
 

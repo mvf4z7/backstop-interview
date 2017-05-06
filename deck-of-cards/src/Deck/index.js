@@ -1,6 +1,6 @@
 import Card from '../Card';
 import { Suits, Ranks } from '../constants';
-import randomInt from '../randomInt';
+import randomInt from '../utils/randomInt';
 
 //  Draw, returns only a few cards
 // shuffle should be in place
