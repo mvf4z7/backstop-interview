@@ -1,5 +1,7 @@
 import Deck from './Deck';
+import Card from './Card';
+import * as Constants from './constants';
 
-const deck = new Deck();
+export default Deck;
+export { Card, Constants };
 
-deck.print();

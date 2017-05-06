@@ -161,7 +161,7 @@ var Deck = function () {
       var match = str.match(regex);
 
       // Should be three, with first element being the full match,
-      // and the 2nd and 3rd elements being the name and suit, respectively.
+      // and the 2nd and 3rd elements being the name and suit matches, respectively.
       if (match === null || match.length !== 3) {
         return null;
       }

@@ -3,14 +3,18 @@ const Defaults = {
   max: Number.MAX_SAFE_INTEGER,
 };
 
+function isInt(num) {
+  return num % 1 === 0;
+}
+
 // Returns a random integer between min and max, inclusive of min and max
-export default function randomInt({min = Defaults.min, max = Defaults.max } = Defaults) {
+export default function randomInt({ min = Defaults.min, max = Defaults.max } = Defaults) {
   if(isNaN(min) || isNaN(max)) {
-    throw TypeError('A non number value provided as argument');
+    throw new TypeError('A non number value provided as argument');
   }
 
   if(!isInt(min) || !isInt(max)) {
-    throw TypeError('A non integer value provided as argument');
+    throw new TypeError('A non integer value provided as argument');
   }
 
   // Math.random is from 0 to 1, inclusive of 0 but exclusive of 1.
@@ -18,6 +22,3 @@ export default function randomInt({min = Defaults.min, max = Defaults.max } = De
   return Math.floor(Math.random() * ((max + 1) - min)) + min;
 }
 
-function isInt(num) {
-  return num % 1 === 0;
-}
