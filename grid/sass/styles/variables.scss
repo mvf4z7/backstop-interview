@@ -4,13 +4,15 @@ $gray: #cecfd0;
 $white: #ffffff;
 $off-white: #f7f8f9;
 
-// Fonts
+// Typography
 $font-size-xs: 0.75rem; // 12px
 $font-size-sm: 0.875rem; // 14px
 $font-size-md: 1rem; // 16px
 $font-size-lg: 1.375rem; // 22px
 $font-size-xl: 1.75rem;  // 28px
 $font-size-xxl: 2.25rem; // 36px
+
+$paragraph-line-height: 1.75;
 
 /*** Component Variables ***/
 
@@ -25,4 +27,4 @@ $nav-padding: 0rem 0rem 0rem $main-content-padding;
 $nav-height: 54px;
 
 // Footer
-$footer-padding: $main-content-padding;
+$footer-padding-left: $main-content-padding;

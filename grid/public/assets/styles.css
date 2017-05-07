@@ -46,6 +46,7 @@ table {
   border-spacing: 0; }
 
 /*** Component Variables ***/
+/*** Component Variables ***/
 .header {
   background-color: #131413;
   color: #ffffff;
@@ -135,7 +136,7 @@ table {
   padding-bottom: 1rem; }
   @media screen and (min-width: 901px) {
     .footer {
-      padding: 2rem; } }
+      padding-left: 2rem; } }
   .footer__items {
     display: flex;
     flex-direction: column;
@@ -174,6 +175,9 @@ html {
 body {
   margin: 0;
   background-color: #cecfd0; }
+
+p {
+  line-height: 1.75; }
 
 #view-port {
   height: 100vh;
