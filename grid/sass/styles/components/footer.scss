@@ -4,7 +4,7 @@
 .footer {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  @include create-mq(lg, margin, $footer-margin);
+  @include create-mq(lg, padding-left, $footer-padding-left);
 
   &__items {
     display: flex;

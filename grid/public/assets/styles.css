@@ -68,7 +68,7 @@ table {
 
 .nav {
   height: 54px;
-  margin-left: 2.5rem;
+  padding: 0rem 0rem 0rem 2rem;
   overflow-y: hidden; }
   .nav__button-container {
     display: flex;
@@ -78,7 +78,8 @@ table {
     border: none;
     background-color: transparent;
     line-height: 1;
-    font-size: 25px; }
+    font-size: 25px;
+    padding: 0px; }
   .nav__hamburger-icon {
     margin-right: 5px; }
   .nav__hamburger-text {
@@ -134,7 +135,7 @@ table {
   padding-bottom: 1rem; }
   @media screen and (min-width: 901px) {
     .footer {
-      margin: 0rem 0rem 0rem 2.5rem; } }
+      padding: 2rem; } }
   .footer__items {
     display: flex;
     flex-direction: column;
@@ -156,6 +157,13 @@ table {
     @media screen and (min-width: 901px) {
       .footer__bar {
         display: initial; } }
+
+/*** Component Variables ***/
+.page-header {
+  margin-bottom: 3rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  line-height: 1.5; }
 
 *, *:before, *:after {
   box-sizing: border-box; }

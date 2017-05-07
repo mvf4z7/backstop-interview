@@ -3,7 +3,7 @@
 
 .nav {
   height: $nav-height;
-  margin-left: 2.5rem;
+  padding: $nav-padding;
   overflow-y: hidden;
 
   &__button-container {
@@ -16,6 +16,7 @@
     background-color: transparent;
     line-height: 1;
     font-size: 25px;
+    padding: 0px;
   }
 
   &__hamburger-icon {

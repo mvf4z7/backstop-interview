@@ -14,12 +14,15 @@ $font-size-xxl: 2.25rem; // 36px
 
 /*** Component Variables ***/
 
+// Main Content
+$main-content-padding: 2rem;
+
 // Header
 $brand-fontsize: 48px;
-$nav-margin: 0rem 0rem 0rem 2.5rem;
+$nav-padding: 0rem 0rem 0rem $main-content-padding;
 
 // Nav
 $nav-height: 54px;
 
 // Footer
-$footer-margin: $nav-margin;
+$footer-padding: $main-content-padding;
