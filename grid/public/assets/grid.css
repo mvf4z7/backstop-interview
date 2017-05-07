@@ -1,7 +1,3 @@
-[class^='col'] {
-  border: 1px dashed black;
-  height: 100px; }
-
 .grid {
   display: flex;
   flex-direction: row;
@@ -82,6 +78,16 @@
     .grid .col-lg-12 {
       flex: initial;
       width: 100%; } }
+  .grid > [class^='col-'] {
+    padding-left: 1rem;
+    padding-right: 1rem; }
+  .grid > [class^='col-']:first-child {
+    padding-left: 0; }
+  .grid > [class^='col-']:last-child {
+    padding-right: 0; }
+  .grid.no-gutters > [class^='col-'] {
+    padding-left: 0;
+    padding-right: 0; }
 
 @media screen and (min-width: 0px) and (max-width: 900px) {
   .hide-sm {

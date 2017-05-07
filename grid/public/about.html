@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Big Widgets Co.</title>
+  <title>Big Widgets Co. | About Us</title>
   <link rel="stylesheet" href="/assets/grid.css">
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
@@ -11,38 +11,75 @@
     <header class="header">
         <h2 class="header__brand">BIG Widgets Co</h2>
     </header>
-    <nav class="nav">
-      <div class="nav__button-container hide-lg" role="presentation">
-        <button id="hamburger" class="nav__hamburger-btn">
-          <span class="nav__hamburger-icon">&#9776;</span>
-          <span class="nav__hamburger-text">Menu</span>
-        </button>
-      </div>
-      <ul id="nav-items" class="nav__items">
-        <button id="cross" class="nav__cross"><span role="presentation">&#735;</span></button>
-        <li class="nav__item"><a href="/index.html">Home</a></li>
-        <li class="nav__item nav__item--active"><a href="/about.html">About</a></li>
-        <li class="nav__item"><a href="/contact.html">Contact</a></li>
-      </ul>
-    </nav>
-    <div id="main-content">
-      <h1>About<h1>
-      <div class="grid">
-        <div class="col-sm-4">sm-4</div>
-        <div class="col-sm-4 col-lg-9">sm-4 lg-9</div>
-      </div>
-      <div class="grid">
-        <div class="col-sm-12 col-lg-6">sm-12 lg-6</div>
-        <div class="col-sm-12 col-lg-6">sm-12 lg-6</div>
-      </div>
-      <div class="grid">
-        <div class="col">1</div>
-        <div class="col">2</div>
-        <div class="col">3</div>
-        <div class="col">4</div>
-        <div class="col">5</div>
-      </div>
-    </div>
+    <div class="wrapper">
+      <nav class="nav">
+        <div class="nav__button-container hide-lg" role="presentation">
+          <button id="hamburger" class="nav__hamburger-btn">
+            <span class="nav__hamburger-icon">&#9776;</span>
+            <span class="nav__hamburger-text">Menu</span>
+          </button>
+        </div>
+        <ul id="nav-items" class="nav__items">
+          <button id="cross" class="nav__cross"><span role="presentation">&#735;</span></button>
+          <li class="nav__item"><a href="/index.html">Home</a></li>
+          <li class="nav__item nav__item--active"><a href="/about.html">About</a></li>
+          <li class="nav__item"><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <main id="main-content" class="main-content">
+        <section>
+          <header class="page-header">
+            <h1>
+              About Us
+            </h1>
+          </header>
+          <div class="grid">
+            <div class="col-sm-12 col-lg-4">
+              <div class="widget">
+                <div class="widget__box">
+                </div>
+                <div class="grid">
+                  <div class="col-sm-12 col-lg-4">
+                    <button class="widget-button"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-4">
+              <div class="widget">
+                <div class="widget__box">
+                </div>
+                <div class="grid">
+                  <div class="col-sm-12 col-lg-4">
+                    <button class="widget-button"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-4">
+              <div class="widget">
+                <div class="widget__box">
+                </div>
+                <div class="grid">
+                  <div class="col-sm-12 col-lg-4">
+                    <button class="widget-button"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <ul class="footer__items">
+          <li class="footer__item">Copyright <span>&copy;</span> 2016 BIG Widgets Co</li>
+          <li class="footer__bar">|</li>
+          <li class="footer__item">(555) 555-5555</li>
+          <li class="footer__bar">|</li>
+          <li class="footer__item"><a href="mailto:info@example.com">info@example.com</a></li>
+        </ul>
+      </footer>
+    </wrapper>
   </div>
 
   <script>

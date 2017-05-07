@@ -166,6 +166,18 @@ table {
   font-weight: bold;
   line-height: 1.5; }
 
+/*** Component Variables ***/
+.widget {
+  border: 1px dashed black;
+  padding-left: 1rem;
+  padding-right: 1rem; }
+  .widget:first-child {
+    padding-left: 0rem; }
+  .widget:last-child {
+    padding-right: 0rem; }
+  .widget__box {
+    height: 100px; }
+
 *, *:before, *:after {
   box-sizing: border-box; }
 

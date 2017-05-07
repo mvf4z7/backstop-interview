@@ -2,10 +2,10 @@
 @import './mixins';
 
 // For debug;
-[class^='col'] {
-  border: 1px dashed black;
-  height: 100px;
-}
+// [class^='col'] {
+//   border: 1px dashed black;
+//   height: 100px;
+// }
 
 .grid {
   display: flex;
@@ -21,6 +21,24 @@
 
   @media screen and (min-width: $large-min) {
     @include create-grid-classes($large-bp-name, $number-of-columns);
+  }
+
+  > [class^='col-'] {
+    padding-left: $gutter-padding;
+    padding-right: $gutter-padding;
+  }
+
+  > [class^='col-']:first-child {
+    padding-left: 0;
+  }
+
+  > [class^='col-']:last-child {
+    padding-right: 0;
+  }
+
+  &.no-gutters > [class^='col-'] {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
