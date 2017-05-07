@@ -177,4 +177,5 @@ body {
   max-width: 901px; }
 
 .main-content {
-  background-color: #f7f8f9; }
+  background-color: #f7f8f9;
+  padding: 2rem; }
