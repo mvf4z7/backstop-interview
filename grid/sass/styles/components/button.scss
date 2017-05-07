@@ -1,0 +1,17 @@
+@import '../variables';
+
+.button {
+  background-color: $btn-bg-color;
+  color: $btn-color;
+  border: 3px solid $btn-color;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: $font-size-md;
+  display: inline-block;
+  text-decoration: none;
+
+  &--full-width {
+    width: 100%;
+    text-align: center;
+  }
+}

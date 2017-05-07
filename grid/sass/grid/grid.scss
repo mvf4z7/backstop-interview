@@ -24,19 +24,6 @@
     @include create-grid-classes($large-bp-name, $number-of-columns);
   }
 
-  // > [class^='col-'] {
-  //   padding-left: $gutter-padding;
-  //   padding-right: $gutter-padding;
-  // }
-
-  // > [class^='col-']:first-child {
-  //   padding-left: 0;
-  // }
-
-  // > [class^='col-']:last-child {
-  //   padding-right: 0;
-  // }
-
   &.no-gutters {
     margin: 0;
   }
