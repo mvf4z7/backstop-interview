@@ -5,6 +5,8 @@
     .col-#{$name}-#{$i} {
       flex: initial;
       width: ($i/$num-of-cols) * 100%;
+      padding-left: $gutter-padding;
+      padding-right: $gutter-padding;
     }
   }
 }
