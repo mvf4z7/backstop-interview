@@ -1,0 +1,32 @@
+@import '../variables';
+@import '../../grid/mixins';
+
+.footer {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  @include create-mq(lg, margin, $footer-margin);
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include create-mq(lg, flex-direction, row)
+  }
+
+  &__item {
+    margin-bottom: 1rem;
+    @include create-mq(lg, margin-bottom, 0rem);
+
+    &:last-child {
+      margin-bottom: 0rem;
+    }
+  }
+
+  &__bar {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    display: none;
+
+    @include create-mq(lg, display, initial);
+  }
+}

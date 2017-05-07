@@ -1,5 +1,6 @@
 @import 'reset.scss';
 @import './components/index';
+@import '../grid/mixins.scss';
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -14,6 +15,17 @@ body {
   background-color: $gray;
 }
 
-#main-content {
+#view-port {
+  height: 100vh;
+  width: 100vw;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+  max-width: get-bp-min(lg);
+}
+
+.main-content {
   background-color: $off-white;
 }

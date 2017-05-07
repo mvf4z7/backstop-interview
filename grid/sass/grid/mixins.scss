@@ -1,8 +1,20 @@
+@import './variables';
+
 @mixin create-grid-classes($name, $num-of-cols) {
   @for $i from 1 through $num-of-cols {
     .col-#{$name}-#{$i} {
       flex: initial;
       width: ($i/$num-of-cols) * 100%;
     }
+  }
+}
+
+@function get-bp-min($bp-name) {
+  @return map-get(map-get($break-points, $bp-name), min) 
+}
+
+@mixin create-mq($bp-name, $property, $property-value) {
+  @media screen and (min-width: get-bp-min($bp-name)) {
+    #{$property}: $property-value;
   }
 }

@@ -5,5 +5,17 @@ $small-min: 0px;
 $small-max: 900px;
 $large-min: $small-max + 1px;
 
+$break-points: (
+  sm: (
+    name: 'sm',
+    min: $small-min,
+    max: $small-max,
+  ),
+  lg: (
+    name: 'lg',
+    min: $small-max + 1px,
+  ),
+);
+
 $large-bp-name: 'lg';
 $small-bp-name: 'sm';
