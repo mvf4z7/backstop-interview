@@ -1,24 +1,10 @@
-$min: 0px;
-$sm-max: 900px;
-$lg-min: $sm-max + 1px;
+@import './variables';
+@import './mixins';
 
-
-$number-of-columns: 12;
-$large: 'lg';
-$small: 'sm';
-
-[class*='col'] {
+// For debug;
+[class^='col'] {
   border: 1px dashed black;
   height: 100px;
-}
-
-@mixin create-grid-classes($name, $num-of-cols) {
-  @for $i from 1 through $num-of-cols {
-    .col-#{$name}-#{$i} {
-      flex: initial;
-      width: ($i/$num-of-cols) * 100%;
-    }
-  }
 }
 
 .grid {
@@ -31,10 +17,23 @@ $small: 'sm';
     flex: 1;
   }
 
-  @include create-grid-classes($small, $number-of-columns);
+  @include create-grid-classes($small-bp-name, $number-of-columns);
 
-  @media screen and (min-width: $lg-min) {
-    @include create-grid-classes($large, $number-of-columns);
+  @media screen and (min-width: $large-min) {
+    @include create-grid-classes($large-bp-name, $number-of-columns);
+  }
+}
+
+// responsive helpers
+.hide-sm {
+  @media screen and (min-width: $small-min) and (max-width: $small-max) {
+    display: none;
+  }
+}
+
+.hide-lg {
+  @media screen and (min-width: $large-min) {
+    display: none !important;
   }
 }
 

@@ -1,0 +1,9 @@
+$number-of-columns: 12;
+
+// breakpoints
+$small-min: 0px;
+$small-max: 900px;
+$large-min: $small-max + 1px;
+
+$large-bp-name: 'lg';
+$small-bp-name: 'sm';

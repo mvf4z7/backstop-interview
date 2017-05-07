@@ -1,0 +1,80 @@
+@import 'variables';
+@import '../flexbox-helpers';
+
+.nav {
+  width: 100%;
+  height: $nav-height;
+  margin-left: 2.5rem;
+  overflow-y: hidden;
+
+  &__button-container {
+    @include align-center();
+    height: 100%;
+  }
+
+  &__hamburger-btn {
+    border: none;
+    background-color: transparent;
+    line-height: 1;
+    font-size: 25px;
+  }
+
+  &__hamburger-icon {
+    margin-right: 5px;
+  }
+
+  &__hamburger-text {
+    font-size: $font-size-lg;
+  }
+
+  &__items {
+    @include align-center();
+    height: 100%;
+  }
+
+  &__cross {
+    display: none;
+  }
+
+  &__item {
+    margin-right: 1rem;
+    font-size: $font-size-lg;
+  }
+
+  &__items--fullscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 9999999;
+    background-color: cyan;
+    flex-direction: column;
+    color: $white;
+    background-color: rgba($black, 0.95);
+
+    .nav__cross {
+      display: initial;
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      border: none;
+      background-color: transparent;
+      font-size: 80px;
+      height: 50px;
+      width: 50px;
+      color: $white;
+      overflow: hidden;
+    }
+
+    .nav__item {
+      margin-right: 0;
+      margin-bottom: 1.5rem;
+      font-size: $font-size-lg;
+
+      &:nth-child(2) {
+        margin-top: 75px;
+      }
+    }
+  }
+}

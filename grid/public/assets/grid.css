@@ -1,4 +1,4 @@
-[class*='col'] {
+[class^='col'] {
   border: 1px dashed black;
   height: 100px; }
 
@@ -82,3 +82,11 @@
     .grid .col-lg-12 {
       flex: initial;
       width: 100%; } }
+
+@media screen and (min-width: 0px) and (max-width: 900px) {
+  .hide-sm {
+    display: none; } }
+
+@media screen and (min-width: 901px) {
+  .hide-lg {
+    display: none !important; } }

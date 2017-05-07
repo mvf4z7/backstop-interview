@@ -8,8 +8,22 @@
 </head>
 <body>
   <div id="view-port">
+    <header class="header">
+        <h1 class="header__brand">BIG Widgets Co</h1>
+    </header>
     <nav class="nav">
-      <div>foo</div>
+      <div class="nav__button-container hide-lg">
+        <button id="hamburger" class="nav__hamburger-btn">
+          <span class="nav__hamburger-icon">&#9776;</span>
+          <span class="nav__hamburger-text">Menu</span>
+        </button>
+      </div>
+      <div id="nav-items" class="nav__items">
+        <button id="cross" class="nav__cross">&#735;</button>
+        <div class="nav__item">Home</div>
+        <div class="nav__item">About</div>
+        <div class="nav__item">Contact</div>
+      </div>
     </nav>
     <div id="main-content">
       <div class="grid">
@@ -29,5 +43,21 @@
       </div>
     </div>
   </div>
+
+  <script>
+  (function() {
+    var hamburger = document.getElementById('hamburger');
+    hamburger.onclick = function(evt){
+      var navItems = document.getElementById('nav-items');
+      navItems.className += ' nav__items--fullscreen';
+    } 
+
+    var cross = document.getElementById('cross');
+    cross.onclick = function(evt) {
+      var navItems = document.getElementById('nav-items');
+      navItems.className = navItems.className.replace('nav__items--fullscreen', '').trim();
+    }
+  })();
+  </script>
 </body>
 </html>

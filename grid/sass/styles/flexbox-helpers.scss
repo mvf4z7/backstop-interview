@@ -1,0 +1,19 @@
+@mixin align-center() {
+  display: flex;
+  align-items: center;
+}
+
+@mixin center() {
+  @include align-center();
+  justify-content: center;
+}
+
+.grid {
+  &.align-center {
+    @include align-center();
+  }
+
+  &.center {
+    @include center();
+  }
+}

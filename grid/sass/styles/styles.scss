@@ -1,7 +1,19 @@
-@import 'normalize.scss';
-@import 'nav.scss';
+@import 'reset.scss';
+@import './components/index';
 
 *, *:before, *:after {
   box-sizing: border-box;
 }
 
+html {
+  font-family: sans-serif;
+}
+
+body { 
+  margin: 0;
+  background-color: $gray;
+}
+
+#main-content {
+  background-color: $off-white;
+}

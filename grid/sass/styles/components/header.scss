@@ -1,0 +1,14 @@
+@import '../variables';
+
+.header {
+  background-color: $black;
+  color: $white;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+
+  &__brand {
+    color: $white;
+    font-size: $brand-fontsize;
+  }
+}
