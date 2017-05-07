@@ -1,0 +1,19 @@
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%; }
+  .grid .column, .grid .column-sm-6, .grid .column-sm-3 {
+    border: 1px dashed black;
+    height: 100px;
+    flex: 1; }
+  .grid [class*='column-'] {
+    flex: initial; }
+  .grid .column-sm-6 {
+    width: 50%; }
+  .grid .column-sm-3 {
+    width: 25%; }
+  @media screen and (min-width: 901px) {
+    .grid .column-lg-6 {
+      border: 1px dashed black;
+      width: 50%; } }
