@@ -3,9 +3,23 @@ $sm-max: 900px;
 $lg-min: $sm-max + 1px;
 
 
-$column: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+$number-of-columns: 12;
 $large: 'lg';
 $small: 'sm';
+
+[class*='col'] {
+  border: 1px dashed black;
+  height: 100px;
+}
+
+@mixin create-grid-classes($name, $num-of-cols) {
+  @for $i from 1 through $num-of-cols {
+    .col-#{$name}-#{$i} {
+      flex: initial;
+      width: ($i/$num-of-cols) * 100%;
+    }
+  }
+}
 
 .grid {
   display: flex;
@@ -13,31 +27,14 @@ $small: 'sm';
   flex-wrap: wrap;
   width: 100%;
 
-  .column {
-    border: 1px dashed black;
-    height: 100px;
+  .col {
     flex: 1;
   }
 
-  [class*='column-'] {
-    flex: initial;
-  }
-
-  .column-sm-6 {
-    @extend .column;
-    width: (6 / 12) * 100%;
-  }
-
-  .column-sm-3 {
-    @extend .column;
-    width: (3 / 12) * 100%;
-  }
+  @include create-grid-classes($small, $number-of-columns);
 
   @media screen and (min-width: $lg-min) {
-    .column-lg-6 {
-      border: 1px dashed black;
-      width: (6 / 12) * 100%;
-    }
+    @include create-grid-classes($large, $number-of-columns);
   }
 }
 
