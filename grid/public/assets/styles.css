@@ -244,3 +244,6 @@ p {
 .main-content {
   background-color: #f7f8f9;
   padding: 2rem; }
+
+body.modal-open {
+  overflow-y: hidden; }

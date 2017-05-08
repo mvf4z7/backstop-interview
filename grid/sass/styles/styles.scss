@@ -35,3 +35,7 @@ p {
   background-color: $off-white;
   padding: 2rem;
 }
+
+body.modal-open {
+  overflow-y: hidden;
+}

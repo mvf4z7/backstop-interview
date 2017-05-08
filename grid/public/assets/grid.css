@@ -12,125 +12,77 @@
     padding-right: 1rem; }
   .grid .col-sm-1 {
     flex: initial;
-    width: 8.33333%;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    width: 8.33333%; }
   .grid .col-sm-2 {
     flex: initial;
-    width: 16.66667%;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    width: 16.66667%; }
   .grid .col-sm-3 {
     flex: initial;
-    width: 25%;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    width: 25%; }
   .grid .col-sm-4 {
     flex: initial;
-    width: 33.33333%;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    width: 33.33333%; }
   .grid .col-sm-5 {
     flex: initial;
-    width: 41.66667%;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    width: 41.66667%; }
   .grid .col-sm-6 {
     flex: initial;
-    width: 50%;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    width: 50%; }
   .grid .col-sm-7 {
     flex: initial;
-    width: 58.33333%;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    width: 58.33333%; }
   .grid .col-sm-8 {
     flex: initial;
-    width: 66.66667%;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    width: 66.66667%; }
   .grid .col-sm-9 {
     flex: initial;
-    width: 75%;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    width: 75%; }
   .grid .col-sm-10 {
     flex: initial;
-    width: 83.33333%;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    width: 83.33333%; }
   .grid .col-sm-11 {
     flex: initial;
-    width: 91.66667%;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    width: 91.66667%; }
   .grid .col-sm-12 {
     flex: initial;
-    width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem; }
+    width: 100%; }
   @media screen and (min-width: 901px) {
     .grid .col-lg-1 {
       flex: initial;
-      width: 8.33333%;
-      padding-left: 1rem;
-      padding-right: 1rem; }
+      width: 8.33333%; }
     .grid .col-lg-2 {
       flex: initial;
-      width: 16.66667%;
-      padding-left: 1rem;
-      padding-right: 1rem; }
+      width: 16.66667%; }
     .grid .col-lg-3 {
       flex: initial;
-      width: 25%;
-      padding-left: 1rem;
-      padding-right: 1rem; }
+      width: 25%; }
     .grid .col-lg-4 {
       flex: initial;
-      width: 33.33333%;
-      padding-left: 1rem;
-      padding-right: 1rem; }
+      width: 33.33333%; }
     .grid .col-lg-5 {
       flex: initial;
-      width: 41.66667%;
-      padding-left: 1rem;
-      padding-right: 1rem; }
+      width: 41.66667%; }
     .grid .col-lg-6 {
       flex: initial;
-      width: 50%;
-      padding-left: 1rem;
-      padding-right: 1rem; }
+      width: 50%; }
     .grid .col-lg-7 {
       flex: initial;
-      width: 58.33333%;
-      padding-left: 1rem;
-      padding-right: 1rem; }
+      width: 58.33333%; }
     .grid .col-lg-8 {
       flex: initial;
-      width: 66.66667%;
-      padding-left: 1rem;
-      padding-right: 1rem; }
+      width: 66.66667%; }
     .grid .col-lg-9 {
       flex: initial;
-      width: 75%;
-      padding-left: 1rem;
-      padding-right: 1rem; }
+      width: 75%; }
     .grid .col-lg-10 {
       flex: initial;
-      width: 83.33333%;
-      padding-left: 1rem;
-      padding-right: 1rem; }
+      width: 83.33333%; }
     .grid .col-lg-11 {
       flex: initial;
-      width: 91.66667%;
-      padding-left: 1rem;
-      padding-right: 1rem; }
+      width: 91.66667%; }
     .grid .col-lg-12 {
       flex: initial;
-      width: 100%;
-      padding-left: 1rem;
-      padding-right: 1rem; } }
+      width: 100%; } }
   .grid.no-gutters {
     margin: 0; }
   .grid.no-gutters > [class^='col-'] {

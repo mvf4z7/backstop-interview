@@ -72,20 +72,6 @@
       </footer>
     </wrapper>
   </div>
-
-  <script>
-  (function() {
-    var hamburger = document.getElementById('hamburger');
-    hamburger.onclick = function(evt){
-      var navItems = document.getElementById('nav-items');
-      navItems.className += ' nav__items--fullscreen';
-    } 
-    var cross = document.getElementById('cross');
-    cross.onclick = function(evt) {
-      var navItems = document.getElementById('nav-items');
-      navItems.className = navItems.className.replace('nav__items--fullscreen', '').trim();
-    }
-  })();
-  </script>
+  <script src="/assets/nav-script.js"></script>
 </body>
 </html>
