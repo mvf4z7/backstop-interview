@@ -1,4 +1,6 @@
 @import '../variables';
+@import '../../grid/mixins';
+@import '../functions';
 
 .form-group {
   margin-bottom: 0.75rem;
@@ -20,6 +22,11 @@
 }
 
 .contact-form {
+  &__description {
+    margin-bottom: 2rem;
+    @include create-mq(lg, margin-top, px-to-rem(15px));
+  }
+
   &__submit-button {
     margin-top: 0.5rem;
   }

@@ -161,7 +161,7 @@ table {
 
 /*** Component Variables ***/
 .page-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   font-size: 1.75rem;
   font-weight: bold;
   line-height: 1.5; }
@@ -215,6 +215,12 @@ table {
   .form-group input, .form-group select {
     height: 2rem;
     font-size: 1rem; }
+
+.contact-form__description {
+  margin-bottom: 2rem; }
+  @media screen and (min-width: 901px) {
+    .contact-form__description {
+      margin-top: 0.9375rem; } }
 
 .contact-form__submit-button {
   margin-top: 0.5rem; }
