@@ -20,6 +20,8 @@
 
   [class^='col-'] {
     width: 100%;
+    padding-left: $gutter-padding;
+    padding-right: $gutter-padding;
   }
 
   @include create-grid-classes($small-bp-name, $number-of-columns);
