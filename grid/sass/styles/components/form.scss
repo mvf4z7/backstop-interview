@@ -1,6 +1,27 @@
 @import '../variables';
 
-.foo {
-  height: 200px;
-  border: 1px dashed black;
+.form-group {
+  margin-bottom: 0.75rem;
+  
+  label {
+    display: inline-block;
+    margin-bottom: 0.25rem;
+  }
+  
+  .form-control {
+    display: block;
+    width: 100%;
+  }
+
+  input, select {
+    height: 2rem;
+    font-size: 1rem;
+  }
 }
+
+.contact-form {
+  &__submit-button {
+    margin-top: 0.5rem;
+  }
+}
+

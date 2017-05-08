@@ -4,11 +4,12 @@
   background-color: $btn-bg-color;
   color: $btn-color;
   border: 3px solid $btn-color;
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   font-weight: bold;
   font-size: $font-size-md;
   display: inline-block;
   text-decoration: none;
+  letter-spacing: 2;
 
   &--full-width {
     width: 100%;

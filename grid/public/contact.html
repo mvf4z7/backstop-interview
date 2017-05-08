@@ -42,7 +42,72 @@
                 </p>
               </div>
               <div class="col-lg-6">
-                <div class="foo">2</div>
+                <form class="contact-form__form">
+                  <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input class="form-control" id="name" name="name" type="text" />
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-control" id="email" name="email" type="email" />
+                  </div>
+                  <div class="grid">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input class="form-control" id="phone" name="phone" type="text" />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="phone-type">Phone Type</label>
+                        <select class="form-control" id="phone-type" name="phone-type">
+                          <option selected hidden value="">Select a phone type</option>
+                          <option value="mobile">Mobile</option>
+                          <option value="home">Home</option>
+                          <option value="work">Work</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="address-1">Street Address</label>
+                    <input class="form-control" id="address-1" name="address-1" type="text" />
+                  </div>
+                  <div class="form-group">
+                    <label for="address-2">Apartment/Unit/Suite</label>
+                    <input class="form-control" id="address-2" name="address-2" type="text" />
+                  </div>
+                  <div class="grid">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="city">City</label>
+                        <input class="form-control" id="city" name="city" type="text" />
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="form-group">
+                        <label for="state">State</label>
+                        <input class="form-control" id="state" name="state" type="text" />
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="form-group">
+                        <label for="zip">Zip</label>
+                        <input class="form-control" id="zip" name="zip" type="text" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="country">Country</label>
+                    <select class="form-control" id="country" name="country">
+                      <option selected hidden value="">Select a country</option>
+                      <option value="1">United States</option>
+                      <option value="2">Zanzibar</option>
+                    </select>
+                  </div>
+                  <button class="button contact-form__submit-button">Submit</button>
+                </form>
               </div>
             </div>
           </div>
