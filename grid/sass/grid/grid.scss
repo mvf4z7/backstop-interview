@@ -18,6 +18,10 @@
     flex: 1;
   }
 
+  [class^='col-'] {
+    width: 100%;
+  }
+
   @include create-grid-classes($small-bp-name, $number-of-columns);
 
   @media screen and (min-width: $large-min) {
@@ -31,6 +35,12 @@
   &.no-gutters > [class^='col-'] {
     padding-left: 0;
     padding-right: 0;
+  }
+
+  &.reverse-lg {
+    @media screen and (min-width: $large-min) {
+      flex-direction: row-reverse;
+    }
   }
 }
 

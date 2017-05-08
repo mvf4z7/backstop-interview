@@ -6,6 +6,8 @@
   margin: 0rem -1rem; }
   .grid .col {
     flex: 1; }
+  .grid [class^='col-'] {
+    width: 100%; }
   .grid .col-sm-1 {
     flex: initial;
     width: 8.33333%;
@@ -132,6 +134,9 @@
   .grid.no-gutters > [class^='col-'] {
     padding-left: 0;
     padding-right: 0; }
+  @media screen and (min-width: 901px) {
+    .grid.reverse-lg {
+      flex-direction: row-reverse; } }
 
 @media screen and (min-width: 0px) and (max-width: 900px) {
   .hide-sm {
