@@ -18,7 +18,7 @@ function buildSass({ src, dest, options }) {
 }
 
 // paths
-var assetsDir = './public/assets/';
+var cssDir = './public/assets/css/';
 var gridRoot = './sass/grid/grid.scss';
 var stylesRoot = './sass/styles/styles.scss';
 
@@ -26,11 +26,11 @@ var sassOpts = {
   outputStyle: 'compressed',
 };
 
-gulp.task('build-grid', buildSass({ src: gridRoot, dest: assetsDir }));
-gulp.task('build-grid:min', buildSass({ src: gridRoot, dest: assetsDir, options: sassOpts }));
+gulp.task('build-grid', buildSass({ src: gridRoot, dest: cssDir }));
+gulp.task('build-grid:min', buildSass({ src: gridRoot, dest: cssDir, options: sassOpts }));
 
-gulp.task('build-styles', buildSass({ src: stylesRoot, dest: assetsDir }));
-gulp.task('build-styles:min', buildSass({ src: stylesRoot, dest: assetsDir, options: sassOpts }));
+gulp.task('build-styles', buildSass({ src: stylesRoot, dest: cssDir }));
+gulp.task('build-styles:min', buildSass({ src: stylesRoot, dest: cssDir, options: sassOpts }));
 
 gulp.task('sass:watch', [ 'build-grid', 'build-grid:min', 'build-styles', 'build-styles:min' ], function() {
   gulp.watch('./sass/grid/**/*.scss', [ 'build-grid' ]);
