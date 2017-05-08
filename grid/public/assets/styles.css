@@ -202,6 +202,11 @@ table {
     width: 100%;
     text-align: center; }
 
+/*** Component Variables ***/
+.foo {
+  height: 200px;
+  border: 1px dashed black; }
+
 *, *:before, *:after {
   box-sizing: border-box; }
 
