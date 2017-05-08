@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "gulp sass:watch"
+    "start": "npm run build && http-server",
+    "dev": "gulp sass:watch & http-server",
+    "build": "gulp sass"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-sass": "^3.1.0"
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "http-server": "^0.10.0"
   }
 }
